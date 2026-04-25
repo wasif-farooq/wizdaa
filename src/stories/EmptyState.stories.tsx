@@ -4,6 +4,7 @@ import { EmptyState } from '../components/shared/EmptyState';
 const meta: Meta<typeof EmptyState> = {
   title: 'Shared/EmptyState',
   component: EmptyState,
+  tags: ['autodocs'],
 };
 
 export default meta;

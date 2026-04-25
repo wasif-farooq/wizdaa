@@ -4,6 +4,7 @@ import { RequestPreview } from '../components/shared/RequestPreview';
 const meta: Meta<typeof RequestPreview> = {
   title: 'Shared/RequestPreview',
   component: RequestPreview,
+  tags: ['autodocs'],
 };
 
 export default meta;

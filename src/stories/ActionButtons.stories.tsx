@@ -4,6 +4,7 @@ import { ActionButtons } from '../components/shared/ActionButtons';
 const meta: Meta<typeof ActionButtons> = {
   title: 'Shared/ActionButtons',
   component: ActionButtons,
+  tags: ['autodocs'],
 };
 
 export default meta;

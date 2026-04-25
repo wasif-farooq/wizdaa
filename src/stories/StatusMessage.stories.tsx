@@ -4,6 +4,7 @@ import { StatusMessage } from '../components/shared/StatusMessage';
 const meta: Meta<typeof StatusMessage> = {
   title: 'Shared/StatusMessage',
   component: StatusMessage,
+  tags: ['autodocs'],
 };
 
 export default meta;

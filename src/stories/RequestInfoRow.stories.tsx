@@ -4,6 +4,7 @@ import { RequestInfoRow } from '../components/shared/RequestInfoRow';
 const meta: Meta<typeof RequestInfoRow> = {
   title: 'Shared/RequestInfoRow',
   component: RequestInfoRow,
+  tags: ['autodocs'],
 };
 
 export default meta;

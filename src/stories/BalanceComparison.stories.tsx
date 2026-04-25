@@ -4,6 +4,7 @@ import { BalanceComparison } from '../components/shared/BalanceComparison';
 const meta: Meta<typeof BalanceComparison> = {
   title: 'Shared/BalanceComparison',
   component: BalanceComparison,
+  tags: ['autodocs'],
 };
 
 export default meta;

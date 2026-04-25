@@ -4,6 +4,7 @@ import { StatusBadge } from '../components/shared/StatusBadge';
 const meta: Meta<typeof StatusBadge> = {
   title: 'Shared/StatusBadge',
   component: StatusBadge,
+  tags: ['autodocs'],
 };
 
 export default meta;

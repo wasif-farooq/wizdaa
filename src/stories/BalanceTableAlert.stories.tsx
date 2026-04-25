@@ -4,6 +4,7 @@ import { BalanceTableAlert } from '../components/shared/BalanceTableAlert';
 const meta: Meta<typeof BalanceTableAlert> = {
   title: 'Shared/BalanceTableAlert',
   component: BalanceTableAlert,
+  tags: ['autodocs'],
 };
 
 export default meta;

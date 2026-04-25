@@ -7,6 +7,7 @@ const meta: Meta<typeof BalanceTable> = {
   parameters: {
     layout: 'fullscreen',
   },
+  tags: ['autodocs'],
 };
 
 export default meta;

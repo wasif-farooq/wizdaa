@@ -4,6 +4,7 @@ import { BalanceTableHeader } from '../components/shared/BalanceTableHeader';
 const meta: Meta<typeof BalanceTableHeader> = {
   title: 'Shared/BalanceTableHeader',
   component: BalanceTableHeader,
+  tags: ['autodocs'],
 };
 
 export default meta;

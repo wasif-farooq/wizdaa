@@ -8,50 +8,55 @@ npm run build        # Production build
 npm run lint         # ESLint
 npm run storybook    # Storybook (localhost:6006)
 npm run test         # All tests (Jest)
-npm run test:unit    # Unit tests only
-npm run test:integration  # Integration tests only
-npm run test:coverage    # With coverage report
+npm run test:unit    # jest tests/unit
+npm run test:integration  # jest tests/integration
+npm run test:coverage    # --coverage report
 ```
 
-## Framework (Next.js 16)
+## Framework
 
-- **App Router**: Routes in `app/`, shared layouts in `layout.tsx`
-- **No `src/` by default**: App folder IS root; `src/` holds UI code
-- **Tailwind 4**: No `tailwind.config.js` — config in CSS `@theme` blocks
-- **Server Components**: Use `'use client'` for interactive components
-- **Route Handlers**: API routes in `app/api/*/route.ts`
+- **Next.js 16** App Router — routes in `app/`, layouts in `layout.tsx`
+- **No `src/` prefix** for app layer — `app/` is root; `src/` holds UI/stores/hooks/lib
+- **Tailwind 4** — no `tailwind.config.js`; theme config lives in CSS `@theme` blocks
+- **Server Components** — add `'use client'` for interactive components
+- **Route Handlers** — `app/api/*/route.ts`
 
 ## Architecture
 
 ```
-app/api/hcm/         # Mock HCM API routes (balance, batch, anniversary)
-app/                 # App Router entrypoints (layout, page)
+app/api/hcm/          # Mock HCM API routes (balance, batch, timer, anniversary, deny, check)
+app/                  # App Router entrypoints (layout, page)
 src/
-  stores/            # Zustand (balanceStore, requestStore, roleStore)
-  hooks/             # React Query hooks (useBalances, useManagerActions)
-  components/        # Presentational components (balance, request, manager, ui)
-  lib/               # hcmClient, hcmStore, types
-  mocks/             # MSW handlers
+  stores/             # Zustand (balanceStore, requestStore, roleStore)
+  hooks/              # React Query hooks (useBalances, useManagerActions)
+  components/         # Presentational components (balance, request, manager, ui)
+  lib/                # hcmClient, hcmStore, types
+  mocks/              # MSW handlers
+tests/
+  unit/               # Unit tests (balanceStore, requestStore, roleStore, hcmStore)
+  integration/        # API route tests, workflow tests, store integration
+  setup.ts            # Mocks React Query, next/navigation; resets beforeEach
+  __mocks__/          # Mock implementations (hcmClient)
 ```
 
-## Conventions
+## State & Data Conventions
 
-- **State**: Zustand for UI state; React Query for server state
-- **Components**: Receive data via props, no direct store access
-- **API calls**: Use `src/lib/hcmClient.ts` wrappers only
+- **Zustand** for UI state; **React Query** for server state
+- Components receive data via props, no direct store access
+- API calls go through `src/lib/hcmClient.ts` only
 
-## Mock HCM Behaviors
+## Mock HCM Behaviors (intentional failures for testing)
 
-- `/api/hcm/balance` — GET/POST (5% error, 10% silent failure)
+- `/api/hcm/balance` — GET/POST (5% error rate, 10% silent failure)
 - `/api/hcm/batch` — GET all (500ms delay, 5% corruption)
 - `/api/hcm/anniversary` — POST adds +5 days to random employee
 
 ## Test Setup
 
-- **Runner**: Jest with `ts-jest` + `jsdom`
-- **Setup file**: `tests/setup.ts` (mocks React Query, next/navigation)
-- **Test files**: Match `**/*.test.{ts,tsx}` in `tests/` and `src/`
-- **Coverage threshold**: 80% statements/branches/lines, 70% branches
+- **Jest** with `ts-jest` + `jsdom`
+- **Setup**: `tests/setup.ts` — mocks `@tanstack/react-query` and `next/navigation`
+- **Test files**: `**/*.test.{ts,tsx}` in `tests/` and `src/`
+- **Coverage thresholds**: 80% statements/functions/lines, 70% branches
 
 ## Dev Notes
 
