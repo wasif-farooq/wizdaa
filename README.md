@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wizdaa - ExampleHR Time-Off Application
 
-## Getting Started
+A premium time-off management application built with Next.js 16, featuring a robust mock HCM (Human Capital Management) backend.
 
-First, run the development server:
+## 🚀 Getting Started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
+
+- Node.js 20+
+- npm (or yarn/pnpm)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd wizdaa
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 Storybook
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+We use Storybook for component-driven development and visual testing.
 
-## Learn More
+To run Storybook:
+```bash
+npm run storybook
+```
+Open [http://localhost:6006](http://localhost:6006) to view the component library.
 
-To learn more about Next.js, take a look at the following resources:
+To build Storybook for production:
+```bash
+npm run build-storybook
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧪 Testing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project uses Jest and React Testing Library for comprehensive test coverage.
 
-## Deploy on Vercel
+- **Run all tests:**
+  ```bash
+  npm run test
+  ```
+- **Run unit tests:**
+  ```bash
+  npm run test:unit
+  ```
+- **Run integration tests:**
+  ```bash
+  npm run test:integration
+  ```
+- **Check coverage:**
+  ```bash
+  npm run test:coverage
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> [!NOTE]
+> Coverage thresholds: 80% for statements, functions, and lines; 70% for branches.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS 4
+- **State Management:** Zustand (UI State), React Query (Server State)
+- **Testing:** Jest, MSW (Mock Service Worker)
+- **Runtime Logic:** Node-cron (for anniversary timers)
+
+## 🏢 Architecture
+
+- `app/`: Next.js App Router entrypoints and API routes.
+- `src/components/`: Presentational components.
+- `src/stores/`: Zustand stores for local state.
+- `src/hooks/`: React Query hooks for data fetching.
+- `src/lib/`: Shared utilities and HCM client logic.
+- `tests/`: Unit and integration test suites.
+
+## ⚙️ Mock HCM Behaviors
+
+The application includes intentional API failures and delays to simulate real-world HCM behavior:
+- **Balance API:** 5% error rate, 10% silent failure.
+- **Batch API:** 500ms artificial delay, 5% data corruption.
+- **Anniversary Timer:** Automatically runs every 45s in development mode to add +5 days to random employees.
+
+## 👤 Demo Information
+
+- **Demo User ID:** `emp-001`
+- **Dataset:** 10 employees across 4 locations.
